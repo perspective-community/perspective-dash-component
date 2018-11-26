@@ -13,11 +13,6 @@ import * as worker from "file-worker-loader?inline=true!@jpmorganchase/perspecti
 
 perspective.override({wasm, worker});
 
-
-/* css */
-import '!!style-loader!css-loader!less-loader!../less/material.less';
-
-
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -63,9 +58,9 @@ export default class perspective_dash extends Component {
     }
 }
 
-perspective.defaultProps = {};
+perspective_dash.defaultProps = {};
 
-perspective.propTypes = {
+perspective_dash.propTypes = {
     /**
      * The ID used to identify this component in Dash callbacks
      */
