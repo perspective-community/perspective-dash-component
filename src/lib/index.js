@@ -1,6 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import perspective from './components/perspective.react';
+import perspective_dash from './components/perspective.react';
 
-export {
-    perspective
-};
+export {perspective_dash};

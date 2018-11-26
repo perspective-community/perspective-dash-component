@@ -1,6 +1,23 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+/* perspective components */
+import "@jpmorganchase/perspective-viewer";
+import "@jpmorganchase/perspective-viewer-hypergrid";
+import "@jpmorganchase/perspective-viewer-highcharts";
+
+
+import perspective from "@jpmorganchase/perspective";
+import * as wasm from "arraybuffer-loader!@jpmorganchase/perspective/build/psp.async.wasm";
+import * as worker from "file-worker-loader?inline=true!@jpmorganchase/perspective/build/perspective.wasm.worker.js";
+
+perspective.override({wasm, worker});
+
+
+/* css */
+import '!!style-loader!css-loader!less-loader!../less/material.less';
+
+
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -8,7 +25,7 @@ import PropTypes from 'prop-types';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class perspective extends Component {
+export default class perspective_dash extends Component {
     render() {
         const {id, label, setProps, value} = this.props;
 
@@ -40,6 +57,7 @@ export default class perspective extends Component {
                         }
                     }}
                 />
+            <perspective-viewer></perspective-viewer>
             </div>
         );
     }
@@ -61,7 +79,7 @@ perspective.propTypes = {
     /**
      * The value displayed in the input
      */
-    value: PropTypes.string,
+    value: PropTypes.json,
 
     /**
      * Dash-assigned callback that should be called whenever any of the
