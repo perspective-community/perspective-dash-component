@@ -1,6 +1,5 @@
 /* eslint no-magic-numbers: 0 */
 import React, {Component} from 'react';
-
 import { perspective_dash } from '../lib';
 
 class App extends Component {

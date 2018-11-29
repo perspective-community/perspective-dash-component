@@ -2,6 +2,12 @@ const path = require("path");
 const PerspectivePlugin = require("@jpmorganchase/perspective/webpack-plugin");
 const webpack = require("webpack");
 
+const packagejson = require('./package.json');
+const dashLibraryName = packagejson.name.replace(/-/g, '_');
+const modeSuffix = 'min';
+const filename = `${dashLibraryName}.${modeSuffix}.js`;
+
+
 module.exports = {
     entry: "./src/lib/index.js",
     resolveLoader: {
@@ -28,8 +34,9 @@ module.exports = {
         ]
     },
     output: {
-        filename: "index.js",
-        libraryTarget: "umd",
-        path: path.resolve(__dirname, "../../build")
+        path: path.resolve(__dirname, dashLibraryName),
+        filename,
+        library: dashLibraryName,
+        libraryTarget: 'window',
     }
 };

@@ -14,7 +14,7 @@ which is editable by the user.
 Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks
 - label (string; required): A label that will be printed when this component is rendered.
-- value (string; optional): The value displayed in the input
+- value (optional): The value displayed in the input
 
 Available events: """
     @_explicitize_args
@@ -32,7 +32,7 @@ Available events: """
         _locals.update(kwargs)  # For wildcard attrs
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
-        for k in [u'label']:
+        for k in ['label']:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')

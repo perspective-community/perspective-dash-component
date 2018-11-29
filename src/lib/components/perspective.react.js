@@ -7,12 +7,6 @@ import "@jpmorganchase/perspective-viewer-hypergrid";
 import "@jpmorganchase/perspective-viewer-highcharts";
 
 
-import perspective from "@jpmorganchase/perspective";
-import * as wasm from "arraybuffer-loader!@jpmorganchase/perspective/build/psp.async.wasm";
-import * as worker from "file-worker-loader?inline=true!@jpmorganchase/perspective/build/perspective.wasm.worker.js";
-
-perspective.override({wasm, worker});
-
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -23,7 +17,6 @@ perspective.override({wasm, worker});
 export default class perspective_dash extends Component {
     render() {
         const {id, label, setProps, value} = this.props;
-
         return (
             <div id={id}>
                 ExampleComponent: {label}&nbsp;
@@ -52,7 +45,7 @@ export default class perspective_dash extends Component {
                         }
                     }}
                 />
-            <perspective-viewer></perspective-viewer>
+                <span>Test</span>
             </div>
         );
     }
