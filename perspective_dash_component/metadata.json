@@ -20,10 +20,9 @@
       },
       "value": {
         "type": {
-          "name": "custom",
-          "raw": "PropTypes.json"
+          "name": "array"
         },
-        "required": false,
+        "required": true,
         "description": "The value displayed in the input"
       },
       "view": {
@@ -31,7 +30,49 @@
           "name": "string"
         },
         "required": false,
-        "description": "The ID used to identify this component in Dash callbacks"
+        "description": "Perspective view"
+      },
+      "columns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective columns"
+      },
+      "rowpivots": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective rowpivots"
+      },
+      "columnpivots": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective columnpivots"
+      },
+      "aggregates": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective aggregates"
+      },
+      "index": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Perspective index"
+      },
+      "limit": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Perspective limit"
       },
       "setProps": {
         "type": {

@@ -11,7 +11,7 @@ import '../../style/index.css';
  */
 export default class perspective_dash extends Component {
     render() {
-        const {id, label, value, view, setProps} = this.props;
+        const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
         const element = (
             <div id={id} className="perspective-container">
                 Perspective: {label}&nbsp;
@@ -22,12 +22,39 @@ export default class perspective_dash extends Component {
         return element;
     }
   componentDidMount() {
-    const {id, label, value, view, setProps} = this.props;
+    const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
     let psp = document.getElementById(id).querySelector('perspective-viewer');
     console.log(value);
 
-    psp.load(JSON.parse(value));
+    psp.load(value);
     psp.setAttribute('view', view);
+
+    if(columns && columns.length > 0){
+        psp.setAttribute('columns', JSON.stringify(columns));
+        console.log('columns');
+        console.log(columns);
+    }
+
+    if(rowpivots && rowpivots.length > 0){
+        psp.setAttribute('rowpivots', JSON.stringify(rowpivots));
+    }
+
+    if(columnpivots && columnpivots.length > 0){
+        psp.setAttribute('columnpivots', JSON.stringify(columnpivots));
+    }
+
+    if(aggregates && aggregates.length > 0){
+        psp.setAttribute('aggregates', JSON.stringify(aggregates));
+    }
+
+    if(index){
+        psp.setAttribute('index', index);
+    }
+
+    if(limit){
+        psp.setAttribute('limit', limit);
+    }
+
     psp.style.height = '500px';
     psp.style.width = '500px';
   }
@@ -50,12 +77,42 @@ perspective_dash.propTypes = {
     /**
      * The value displayed in the input
      */
-    value: PropTypes.json,
+    value: PropTypes.array.isRequired,
 
     /**
-     * The ID used to identify this component in Dash callbacks
+     * Perspective view
      */
     view: PropTypes.string,
+
+    /**
+     * Perspective columns
+     */
+    columns: PropTypes.array,
+
+    /**
+     * Perspective rowpivots
+     */
+    rowpivots: PropTypes.array,
+
+    /**
+     * Perspective columnpivots
+     */
+    columnpivots: PropTypes.array,
+
+    /**
+     * Perspective aggregates
+     */
+    aggregates: PropTypes.array,
+
+    /**
+     * Perspective index
+     */
+    index: PropTypes.string,
+
+    /**
+     * Perspective limit
+     */
+    limit: PropTypes.number,
 
     /**
      * Dash-assigned callback that should be called whenever any of the

@@ -8,11 +8,16 @@ app = dash.Dash(__name__)
 app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
 
+dat = pd.util.testing.makeTimeDataFrame()
+dat.index = dat.index.astype(str)
+dat = dat.to_dict(orient='records')
+print(dat)
 app.layout = html.Div([
     perspective_dash_component.perspective_dash(
         id='psp-1',
-        value=pd.util.testing.makeTimeDataFrame().to_json(orient='records'),
+        value=dat,
         label='My Perspective component',
+        columns=['A', 'B', 'D'],
         view='y_line',
     )
 ])
