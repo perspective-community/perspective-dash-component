@@ -15,16 +15,17 @@ Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks
 - label (string; required): A label that will be printed when this component is rendered.
 - value (optional): The value displayed in the input
+- view (string; optional): The ID used to identify this component in Dash callbacks
 
 Available events: """
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, label=Component.REQUIRED, value=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'label', 'value']
+    def __init__(self, id=Component.UNDEFINED, label=Component.REQUIRED, value=Component.UNDEFINED, view=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'label', 'value', 'view']
         self._type = 'perspective_dash'
         self._namespace = 'perspective_dash_component'
         self._valid_wildcard_attributes =            []
         self.available_events = []
-        self.available_properties = ['id', 'label', 'value']
+        self.available_properties = ['id', 'label', 'value', 'view']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

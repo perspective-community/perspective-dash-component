@@ -12,7 +12,8 @@ app.layout = html.Div([
     perspective_dash_component.perspective_dash(
         id='psp-1',
         value=pd.util.testing.makeTimeDataFrame().to_json(orient='records'),
-        label='My Perspective component'
+        label='My Perspective component',
+        view='y_line',
     )
 ])
 

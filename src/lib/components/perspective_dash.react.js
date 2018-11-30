@@ -11,23 +11,23 @@ import '../../style/index.css';
  */
 export default class perspective_dash extends Component {
     render() {
-        const {id, label, setProps, value} = this.props;
-
+        const {id, label, value, view, setProps} = this.props;
         const element = (
             <div id={id} className="perspective-container">
                 Perspective: {label}&nbsp;
-                <perspective-viewer></perspective-viewer>
+                <perspective-viewer view={view}></perspective-viewer>
             </div>
         );
 
         return element;
     }
   componentDidMount() {
-    const {id, label, setProps, value} = this.props;
+    const {id, label, value, view, setProps} = this.props;
     let psp = document.getElementById(id).querySelector('perspective-viewer');
     console.log(value);
 
     psp.load(JSON.parse(value));
+    psp.setAttribute('view', view);
     psp.style.height = '500px';
     psp.style.width = '500px';
   }
@@ -51,6 +51,11 @@ perspective_dash.propTypes = {
      * The value displayed in the input
      */
     value: PropTypes.json,
+
+    /**
+     * The ID used to identify this component in Dash callbacks
+     */
+    view: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called whenever any of the
