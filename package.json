@@ -11,7 +11,7 @@
         "build:js-dev": "webpack --mode development",
         "build:js": "webpack --mode production",
         "build:py": "node ./extract-meta.js src/lib/components > perspective_dash_component/metadata.json && copyfiles package.json perspective_dash_component && venv/bin/python -c \"import dash; dash.development.component_loader.generate_classes('perspective_dash_component', 'perspective_dash_component/metadata.json')\"",
-        "build:all": "npm run build:js & npm run build:js-dev & npm run build:py"
+        "build:all": "npm run build:js && npm run build:js-dev && npm run build:py"
     },
     "author": "Tim Paine t.paine154@gmail.com",
     "license": "Apache-2.0",
@@ -26,6 +26,7 @@
         "@babel/core": "^7.0.0",
         "@babel/preset-env": "^7.0.0",
         "@babel/preset-react": "^7.0.0",
+        "arraybuffer-loader": "^1.0.7",
         "babel-eslint": "^9.0.0",
         "babel-loader": "^8.0.0",
         "copyfiles": "^2.0.0",

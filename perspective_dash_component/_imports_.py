@@ -1,5 +1,5 @@
-from .perspective import perspective
+from .perspective_dash import perspective_dash
 
 __all__ = [
-    "perspective"
+    "perspective_dash"
 ]
