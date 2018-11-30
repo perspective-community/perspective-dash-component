@@ -13,9 +13,9 @@ export default class perspective_dash extends Component {
     render() {
         const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
         const element = (
-            <div id={id} className="perspective-container">
+            <div id={id} className="perspective-container" ref="node">
                 Perspective: {label}&nbsp;
-                <perspective-viewer view={view}></perspective-viewer>
+                <perspective-viewer ref="psp" view={view}></perspective-viewer>
             </div>
         );
 
@@ -23,8 +23,12 @@ export default class perspective_dash extends Component {
     }
   componentDidMount() {
     const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
-    let psp = document.getElementById(id).querySelector('perspective-viewer');
+    let psp = ReactDOM.findDOMNode(this.refs.psp);
     console.log(value);
+
+    // infinite recursion
+    // let observer = new MutationObserver(psp.notifyResize.bind(psp));
+    // observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
 
     psp.load(value);
     psp.setAttribute('view', view);
