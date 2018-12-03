@@ -3,4 +3,5 @@ dash
 dash-html-components
 gunicorn
 Flask
+# necessary for heroku demo
 pyEX
