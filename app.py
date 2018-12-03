@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import flask
 import dash
 from dash.dependencies import Input, Output, State
@@ -50,4 +51,9 @@ def update_psp2(value):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, threaded=True)
+    port = os.environ.get('PORT')
+    if port:
+        # heroku
+        app.run_server(port=port, debug=False, threaded=True)
+    else:
+        app.run_server(debug=True, threaded=True)
