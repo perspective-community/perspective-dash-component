@@ -1,6 +1,7 @@
 # dash is required to call `build:py`
 dash
 dash-html-components
+dash-core-components
 gunicorn
 Flask
 # necessary for heroku demo
