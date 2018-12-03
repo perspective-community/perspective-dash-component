@@ -2,11 +2,11 @@
 import os
 import flask
 import dash
+import pyEX as p
 from dash.dependencies import Input, Output, State
 import dash_core_components as dcc
 import dash_html_components as html
 from perspective_dash_component import perspective_dash
-import pyEX as p
 
 # Default data
 symbols = p.symbols()
@@ -17,11 +17,8 @@ server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server)
 
 app.layout = html.Div(children=[
-    html.H1(children='Perspective Demo',
-            style={'textAlign': 'center'}),
-    dcc.Dropdown(id='tickerinput',
-                 options=[{'label': s['name'], 'value': s['symbol']} for s in symbols],
-                 value='JPM'),
+    html.H1(children='Perspective Demo', style={'textAlign': 'center'}),
+    dcc.Dropdown(id='tickerinput', value='JPM', options=[{'label': s['name'], 'value': s['symbol']} for s in symbols]),
     perspective_dash(id='psp1', value=default_data, view='y_line', columns=['open', 'high', 'low', 'close']),
     perspective_dash(id='psp2', value=default_data),
     ],
@@ -31,20 +28,15 @@ app.layout = html.Div(children=[
            'flex-direction': 'column'})
 
 
-@app.callback(
-    Output('psp1', 'value'),
-    [Input('tickerinput', 'value')]
-)
+@app.callback(Output('psp1', 'value'),
+              [Input('tickerinput', 'value')])
 def update_psp1(value):
-    print(value)
     df = p.chartDF(value)
     return df.to_dict(orient='records')
 
 
-@app.callback(
-    Output('psp2', 'value'),
-    [Input('tickerinput', 'value')]
-)
+@app.callback(Output('psp2', 'value'),
+              [Input('tickerinput', 'value')])
 def update_psp2(value):
     df = p.chartDF(value)
     return df.to_dict(orient='records')
@@ -52,8 +44,6 @@ def update_psp2(value):
 
 if __name__ == "__main__":
     port = os.environ.get('PORT')
-    if port:
-        # heroku
-        app.run_server(port=port, debug=False, threaded=True)
-    else:
-        app.run_server(debug=True, threaded=True)
+    # heroku
+    if port: app.run_server(port=port, debug=False, threaded=True)
+    else: app.run_server(debug=True, threaded=True)
