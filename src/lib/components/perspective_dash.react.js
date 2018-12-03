@@ -14,21 +14,21 @@ export default class perspective_dash extends Component {
         const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
         const element = (
             <div id={id} className="perspective-container" ref="node">
-                Perspective: {label}&nbsp;
                 <perspective-viewer ref="psp" view={view}></perspective-viewer>
             </div>
         );
 
         return element;
     }
-  componentDidMount() {
-    const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
+
+  renderFromProps(props){
+    const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = props;
     let psp = ReactDOM.findDOMNode(this.refs.psp);
     console.log(value);
 
     // infinite recursion
-    // let observer = new MutationObserver(psp.notifyResize.bind(psp));
-    // observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
+    let observer = new MutationObserver(psp.notifyResize.bind(psp));
+    observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
 
     psp.load(value);
     psp.setAttribute('view', view);
@@ -58,9 +58,14 @@ export default class perspective_dash extends Component {
     if(limit){
         psp.setAttribute('limit', limit);
     }
+  }
 
-    psp.style.height = '500px';
-    psp.style.width = '500px';
+  componentDidMount() {
+    this.renderFromProps(this.props);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.renderFromProps(newProps);
   }
 }
 
@@ -72,11 +77,6 @@ perspective_dash.propTypes = {
      * The ID used to identify this component in Dash callbacks
      */
     id: PropTypes.string,
-
-    /**
-     * A label that will be printed when this component is rendered.
-     */
-    label: PropTypes.string.isRequired,
 
     /**
      * The value displayed in the input
