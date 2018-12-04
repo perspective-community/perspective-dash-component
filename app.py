@@ -31,14 +31,14 @@ app.layout = html.Div(children=[
 @app.callback(Output('psp1', 'value'),
               [Input('tickerinput', 'value')])
 def update_psp1(value):
-    df = p.chartDF(value)
+    df = p.chartDF(value, '6m')
     return df.to_dict(orient='records')
 
 
 @app.callback(Output('psp2', 'value'),
               [Input('tickerinput', 'value')])
 def update_psp2(value):
-    df = p.chartDF(value)
+    df = p.chartDF(value, '6m')
     return df.to_dict(orient='records')
 
 
