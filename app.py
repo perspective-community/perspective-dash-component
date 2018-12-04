@@ -18,7 +18,7 @@ app = dash.Dash(__name__, server=server)
 
 app.layout = html.Div(children=[
     html.H1(children='Perspective Demo', style={'textAlign': 'center'}),
-    dcc.Dropdown(id='tickerinput', value='JPM', options=[{'label': s['name'], 'value': s['symbol']} for s in symbols]),
+    dcc.Dropdown(id='tickerinput', value='JPM', options=[{'label': s['symbol'] + ' - ' + s['name'], 'value': s['symbol']} for s in symbols]),
     perspective_dash(id='psp1', value=default_data, view='y_line', columns=['open', 'high', 'low', 'close']),
     perspective_dash(id='psp2', value=default_data),
     ],
