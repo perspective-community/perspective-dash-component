@@ -4,3 +4,4 @@ dash-html-components
 dash-core-components
 gunicorn
 Flask
+perspective-python>=0.1.2
