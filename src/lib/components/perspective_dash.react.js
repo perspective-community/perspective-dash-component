@@ -37,11 +37,11 @@ export default class perspective_dash extends Component {
     }
 
     if(rowpivots && rowpivots.length > 0){
-        psp.setAttribute('rowpivots', JSON.stringify(rowpivots));
+        psp.setAttribute('row-pivots', JSON.stringify(rowpivots));
     }
 
     if(columnpivots && columnpivots.length > 0){
-        psp.setAttribute('columnpivots', JSON.stringify(columnpivots));
+        psp.setAttribute('column-pivots', JSON.stringify(columnpivots));
     }
 
     if(aggregates && aggregates.length > 0){

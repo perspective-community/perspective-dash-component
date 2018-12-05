@@ -1,6 +1,6 @@
 {
     "name": "perspective_dash_component",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A dash component for perspective.",
     "main": "build/index.js",
     "scripts": {
