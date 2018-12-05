@@ -8,12 +8,12 @@ class perspective_dash(Component):
 ExampleComponent is an example component.
 It takes a property, `label`, and
 displays it.
-It renders an input with the property `value`
+It renders an input with the property `data`
 which is editable by the user.
 
 Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks
-- value (list; required): The value displayed in the input
+- data (list; required): The data displayed in the input
 - view (string; optional): Perspective view
 - columns (list; optional): Perspective columns
 - rowpivots (list; optional): Perspective rowpivots
@@ -24,13 +24,13 @@ Keyword arguments:
 
 Available events: """
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, value=Component.REQUIRED, view=Component.UNDEFINED, columns=Component.UNDEFINED, rowpivots=Component.UNDEFINED, columnpivots=Component.UNDEFINED, aggregates=Component.UNDEFINED, index=Component.UNDEFINED, limit=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'value', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
+    def __init__(self, id=Component.UNDEFINED, data=Component.REQUIRED, view=Component.UNDEFINED, columns=Component.UNDEFINED, rowpivots=Component.UNDEFINED, columnpivots=Component.UNDEFINED, aggregates=Component.UNDEFINED, index=Component.UNDEFINED, limit=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
         self._type = 'perspective_dash'
         self._namespace = 'perspective_dash_component'
         self._valid_wildcard_attributes =            []
         self.available_events = []
-        self.available_properties = ['id', 'value', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
+        self.available_properties = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')
@@ -38,7 +38,7 @@ Available events: """
         _locals.update(kwargs)  # For wildcard attrs
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
-        for k in ['value']:
+        for k in ['data']:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')

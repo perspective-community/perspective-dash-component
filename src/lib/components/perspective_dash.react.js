@@ -6,12 +6,12 @@ import '../../style/index.css';
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
  * displays it.
- * It renders an input with the property `value`
+ * It renders an input with the property `data`
  * which is editable by the user.
  */
 export default class perspective_dash extends Component {
     render() {
-        const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
+        const {id, label, data, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
         const element = (
             <div id={id} className="perspective-container" ref="node">
                 <perspective-viewer ref="psp" view={view}></perspective-viewer>
@@ -22,21 +22,18 @@ export default class perspective_dash extends Component {
     }
 
   renderFromProps(props){
-    const {id, label, value, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = props;
+    const {id, label, data, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = props;
     let psp = ReactDOM.findDOMNode(this.refs.psp);
-    console.log(value);
 
     // infinite recursion
     let observer = new MutationObserver(psp.notifyResize.bind(psp));
     observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
 
-    psp.load(value);
+    psp.load(data);
     psp.setAttribute('view', view);
 
     if(columns && columns.length > 0){
         psp.setAttribute('columns', JSON.stringify(columns));
-        console.log('columns');
-        console.log(columns);
     }
 
     if(rowpivots && rowpivots.length > 0){
@@ -79,9 +76,9 @@ perspective_dash.propTypes = {
     id: PropTypes.string,
 
     /**
-     * The value displayed in the input
+     * The data displayed in the input
      */
-    value: PropTypes.array.isRequired,
+    data: PropTypes.array.isRequired,
 
     /**
      * Perspective view

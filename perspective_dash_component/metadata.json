@@ -1,6 +1,6 @@
 {
   "src/lib/components/perspective_dash.react.js": {
-    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
+    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `data`\nwhich is editable by the user.",
     "displayName": "perspective_dash",
     "methods": [
       {
@@ -24,12 +24,12 @@
         "required": false,
         "description": "The ID used to identify this component in Dash callbacks"
       },
-      "value": {
+      "data": {
         "type": {
           "name": "array"
         },
         "required": true,
-        "description": "The value displayed in the input"
+        "description": "The data displayed in the input"
       },
       "view": {
         "type": {
