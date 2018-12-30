@@ -24,14 +24,24 @@ Keyword arguments:
 
 Available events: """
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, data=Component.REQUIRED, view=Component.UNDEFINED, columns=Component.UNDEFINED, rowpivots=Component.UNDEFINED, columnpivots=Component.UNDEFINED, aggregates=Component.UNDEFINED, index=Component.UNDEFINED, limit=Component.UNDEFINED, **kwargs):
+    def __init__(self,
+                 id=Component.UNDEFINED,
+                 data=Component.REQUIRED,
+                 view=Component.UNDEFINED,
+                 columns=Component.UNDEFINED,
+                 rowpivots=Component.UNDEFINED,
+                 columnpivots=Component.UNDEFINED,
+                 aggregates=Component.UNDEFINED,
+                 index=Component.UNDEFINED,
+                 limit=Component.UNDEFINED,
+                 **kwargs):
         self._prop_names = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
         self._type = 'perspective_dash'
         self._namespace = 'perspective_dash_component'
-        self._valid_wildcard_attributes =            []
+        self._valid_wildcard_attributes = []
         self.available_events = []
         self.available_properties = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
-        self.available_wildcard_properties =            []
+        self.available_wildcard_properties = []
 
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
@@ -48,20 +58,20 @@ Available events: """
         if(any(getattr(self, c, None) is not None
                for c in self._prop_names
                if c is not self._prop_names[0])
-           or any(getattr(self, c, None) is not None
-                  for c in self.__dict__.keys()
-                  if any(c.startswith(wc_attr)
-                  for wc_attr in self._valid_wildcard_attributes))):
+            or any(getattr(self, c, None) is not None
+                   for c in self.__dict__.keys()
+                   if any(c.startswith(wc_attr)
+                   for wc_attr in self._valid_wildcard_attributes))):
             props_string = ', '.join([c+'='+repr(getattr(self, c, None))
                                       for c in self._prop_names
                                       if getattr(self, c, None) is not None])
             wilds_string = ', '.join([c+'='+repr(getattr(self, c, None))
                                       for c in self.__dict__.keys()
                                       if any([c.startswith(wc_attr)
-                                      for wc_attr in
-                                      self._valid_wildcard_attributes])])
+                                             for wc_attr in
+                                             self._valid_wildcard_attributes])])
             return ('perspective_dash(' + props_string +
-                   (', ' + wilds_string if wilds_string != '' else '') + ')')
+                    (', ' + wilds_string if wilds_string != '' else '') + ')')
         else:
             return (
                 'perspective_dash(' +

@@ -2,13 +2,13 @@ from __future__ import print_function as _
 import os as _os
 import sys as _sys
 import json
-import dash as _dash
+import dash as _dash  # noqa: F401
 
 # noinspection PyUnresolvedReferences
-from ._imports_ import *
+from ._imports_ import *  # noqa: F401, F403
 from ._imports_ import __all__
 
-from dash.development.base_component import Component
+from dash.development.base_component import Component  # noqa: F401
 from perspective import PerspectiveBaseMixin
 
 _basepath = _os.path.dirname(__file__)
@@ -42,7 +42,7 @@ for _component in __all__:
     setattr(locals()[_component], '_css_dist', _css_dist)
 
 
-class PerspectiveDash(perspective_dash):
+class PerspectiveDash(perspective_dash):  # noqa: F405
     def __init__(self,
                  data,
                  view='hypergrid',

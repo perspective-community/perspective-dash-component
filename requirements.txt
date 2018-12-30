@@ -1,7 +1,6 @@
-# dash is required to call `build:py`
-dash
-dash-html-components
-dash-core-components
-gunicorn
-Flask
+dash>=0.35.0
+dash-core-components>=0.42.0
+dash-html-components>=0.13.4
+Flask>=0.12.4
+gunicorn>=19.9.0
 perspective-python>=0.1.2
