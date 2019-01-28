@@ -34,7 +34,6 @@ _js_dist = [
     }
 ]
 
-print(_js_dist)
 _css_dist = []
 
 
