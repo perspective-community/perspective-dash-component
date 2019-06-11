@@ -1,20 +1,23 @@
 /* eslint-disable import/prefer-default-export */
 import perspective_dash from './components/perspective_dash.react';
 
-
-import * as perspective from "@jpmorganchase/perspective";
-import * as wasm from "arraybuffer-loader!@jpmorganchase/perspective/build/psp.async.wasm";
-import * as worker from "file-worker-loader?inline=true!@jpmorganchase/perspective/build/perspective.wasm.worker.js";
-
 /* perspective components */
-import "@jpmorganchase/perspective-viewer";
-import "@jpmorganchase/perspective-viewer-hypergrid";
-import "@jpmorganchase/perspective-viewer-highcharts";
+import "@finos/perspective-viewer";
+import "@finos/perspective-viewer-hypergrid";
+import "@finos/perspective-viewer-highcharts";
+import "@finos/perspective-viewer-d3fc";
+
+import perspective from "@finos/perspective";
+import * as wasm from "arraybuffer-loader!@finos/perspective/build/psp.async.wasm";
+import * as worker from "file-worker-loader?inline=true!@finos/perspective/build/perspective.wasm.worker.js";
 
 window.addEventListener("WebComponentsReady", function() {
-    perspective.default.override({wasm, worker});
+    if (perspective) {
+        perspective.override({wasm, worker});
+    } else {
+        console.warn('Perspective was undefined - wasm load errors may occur');
+    }
 });
-
 
 export {
     perspective_dash

@@ -55,12 +55,49 @@ class PerspectiveDash(perspective_dash):  # noqa: F405
                  index='',
                  limit=-1,
                  computedcolumns=None,
+                 filters=None,
+                 plugin_config=None,
                  settings=True,
                  embed=False,
                  dark=False,
-                 id=None,
+                 transfer_as_arrow=False,
                  *args,
                  **kwargs):
+        '''Setup perspective base class
+
+        Arguments:
+            data : dataframe/list/dict
+                The static or live datasource
+
+        Keyword Arguments:
+            view : str or View
+                what view to use. available in the enum View (default: {'hypergrid'})
+            columns : list of str
+                what columns to display
+            rowpivots : list of str
+                what names to use as rowpivots
+            columnpivots : list of str
+                what names to use as columnpivots
+            aggregates:  dict(str: str or Aggregate)
+                dictionary of name to aggregate type (either string or enum Aggregate)
+            index : str
+                columns to use as index
+            limit : int
+                row limit
+            computedcolumns : list of dict
+                computed columns to set on the perspective viewer
+            filters: list of list
+                list of filters to apply to columns
+            plugin_config: dict
+                configuration dictionary to pass to perspective plugin
+            settings : bool
+                display settings
+            embed : bool
+                embedded mode
+            dark : bool
+                use dark theme
+
+        '''
         self._perspective = PerspectiveBaseMixin()
         self._perspective.setup(data=data,
                                 view=view,
@@ -73,20 +110,32 @@ class PerspectiveDash(perspective_dash):  # noqa: F405
                                 index=index,
                                 limit=limit,
                                 computedcolumns=computedcolumns,
+                                filters=filters,
+                                plugin_config=plugin_config,
                                 settings=settings,
                                 embed=embed,
                                 dark=dark,
+                                transfer_as_arrow=transfer_as_arrow,
                                 *args,
                                 **kwargs)
 
-        super(PerspectiveDash, self).__init__(id=id,
-                                              data=self._perspective._data,
+        super(PerspectiveDash, self).__init__(id=self._perspective.id,
+                                              data=self._perspective.data,
                                               view=self._perspective.view,
+                                              schema=self._perspective.schema,
                                               columns=self._perspective.columns,
                                               rowpivots=self._perspective.rowpivots,
                                               columnpivots=self._perspective.columnpivots,
                                               aggregates=self._perspective.aggregates,
+                                              sort=self._perspective.sort,
                                               index=self._perspective.index,
                                               limit=self._perspective.limit,
+                                              computedcolumns=self._perspective.computedcolumns,
+                                              filters=self._perspective.filters,
+                                              plugin_config=_self._perspective.plugin_config,
+                                              settings=self._perspective.settings,
+                                              embed=self._perspective.embed,
+                                              dark=self._perspective.dark,
+                                              transfer_as_arrow=self._perspective.transfer_as_arrow,
                                               *args,
                                               **kwargs)

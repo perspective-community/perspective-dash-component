@@ -18,15 +18,13 @@ dat2 = l.superstore(50).to_dict(orient='records')
 app.layout = html.Div([
     perspective_dash_component.perspective_dash(
         id='psp-1',
-        value=dat,
-        label='My Perspective component',
+        data=dat,
         columns=['A', 'B', 'D'],
         view='y_line',
     ),
     perspective_dash_component.perspective_dash(
         id='psp-2',
-        value=dat2,
-        label='My Perspective component2'
+        data=dat2
     )
 
 ])

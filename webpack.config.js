@@ -1,6 +1,6 @@
 const path = require('path');
 const packagejson = require('./package.json');
-const PerspectivePlugin = require("@jpmorganchase/perspective/webpack-plugin");
+const PerspectivePlugin = require("@finos/perspective-webpack-plugin");
 const webpack = require("webpack");
 
 const dashLibraryName = packagejson.name.replace(/-/g, '_');
@@ -53,11 +53,6 @@ module.exports = (env, argv) => {
             filename,
             library: dashLibraryName,
             libraryTarget: 'window',
-        },
-        resolveLoader: {
-            alias: {
-                "file-worker-loader": "@jpmorganchase/perspective/src/loader/file_worker_loader.js"
-            }
         },
         externals: externals,
         plugins: [new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /(en|es|fr)$/), new PerspectivePlugin()],

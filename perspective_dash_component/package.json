@@ -16,10 +16,10 @@
     "author": "Tim Paine t.paine154@gmail.com",
     "license": "Apache-2.0",
     "dependencies": {
-        "@jpmorganchase/perspective": "^0.2.12",
-        "@jpmorganchase/perspective-viewer": "^0.2.12",
-        "@jpmorganchase/perspective-viewer-highcharts": "^0.2.12",
-        "@jpmorganchase/perspective-viewer-hypergrid": "^0.2.12",
+        "@finos/perspective": "^0.3.0",
+        "@finos/perspective-viewer": "^0.3.0",
+        "@finos/perspective-viewer-highcharts": "^0.3.0",
+        "@finos/perspective-viewer-hypergrid": "^0.3.0",
         "fast-async": "^6.3.8",
         "ramda": "^0.25.0"
     },

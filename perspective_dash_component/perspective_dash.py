@@ -28,19 +28,28 @@ Available events: """
                  id=Component.UNDEFINED,
                  data=Component.REQUIRED,
                  view=Component.UNDEFINED,
+                 schema=Component.UNDEFINED,
                  columns=Component.UNDEFINED,
                  rowpivots=Component.UNDEFINED,
                  columnpivots=Component.UNDEFINED,
                  aggregates=Component.UNDEFINED,
+                 sort=Component.UNDEFINED,
                  index=Component.UNDEFINED,
                  limit=Component.UNDEFINED,
+                 computedcolumns=Component.UNDEFINED,
+                 filters=Component.UNDEFINED,
+                 plugin_config=Component.UNDEFINED,
+                 settings=Component.UNDEFINED,
+                 embed=Component.UNDEFINED,
+                 dark=Component.UNDEFINED,
+                 transfer_as_arrow=Component.UNDEFINED,
                  **kwargs):
-        self._prop_names = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
+        self._prop_names = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index', 'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
         self._type = 'perspective_dash'
         self._namespace = 'perspective_dash_component'
         self._valid_wildcard_attributes = []
         self.available_events = []
-        self.available_properties = ['id', 'data', 'view', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'index', 'limit']
+        self.available_properties = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index', 'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
         self.available_wildcard_properties = []
 
         _explicit_args = kwargs.pop('_explicit_args')
