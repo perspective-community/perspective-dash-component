@@ -54,6 +54,11 @@ module.exports = (env, argv) => {
             library: dashLibraryName,
             libraryTarget: 'window',
         },
+        resolveLoader: {
+            alias: {
+                "file-worker-loader": "@finos/perspective-webpack-plugin/src/js/psp-worker-loader.js"
+            }
+        },
         externals: externals,
         plugins: [new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /(en|es|fr)$/), new PerspectivePlugin()],
         module: {

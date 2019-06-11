@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import '../../style/index.css';
+import '!!style-loader!css-loader!less-loader!../../style/index.less';
 
 /**
  * It renders an input with the property `data`
@@ -28,7 +28,7 @@ export default class perspective_dash extends Component {
                setProps} = this.props;
         const element = (
             <div id={id} className="perspective-container" ref="node">
-                <perspective-viewer ref="psp" view={view}></perspective-viewer>
+                <perspective-viewer ref="psp"></perspective-viewer>
             </div>
         );
 
@@ -61,9 +61,21 @@ export default class perspective_dash extends Component {
     let observer = new MutationObserver(psp.notifyResize.bind(psp));
     observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
 
-    psp.setAttribute('view', view);
-    psp.load(schema);
-    psp.update(data);
+    console.log(view);
+    console.log(data);
+    console.log(schema);
+
+    if(view){
+      psp.setAttribute('view', view);
+    }
+
+    if (schema && Object.keys(schema).length > 0){
+      psp.load(schema);
+    }
+
+    if(data && data.length > 0){
+      psp.update(data);
+    }
 
     if(columns && columns.length > 0){
         psp.setAttribute('columns', JSON.stringify(columns));

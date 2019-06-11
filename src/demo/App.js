@@ -2,16 +2,22 @@
 import React, {Component} from 'react';
 import { perspective_dash } from '../lib';
 
+import "@finos/perspective-viewer";
+import "@finos/perspective-viewer-hypergrid";
+import "@finos/perspective-viewer-highcharts";
+import "@finos/perspective-viewer-d3fc";
 
-import * as perspective from "@jpmorganchase/perspective";
-import * as wasm from "arraybuffer-loader!@jpmorganchase/perspective/build/psp.async.wasm";
-import * as worker from "file-worker-loader?inline=true!@jpmorganchase/perspective/build/perspective.wasm.worker.js";
-// perspective.override({wasm, worker});
+import perspective from "@finos/perspective";
+import * as wasm from "arraybuffer-loader!@finos/perspective/build/psp.async.wasm";
+import * as worker from "file-worker-loader?inline=true!@finos/perspective/build/perspective.wasm.worker.js";
 
-/* perspective components */
-import "@jpmorganchase/perspective-viewer";
-import "@jpmorganchase/perspective-viewer-hypergrid";
-import "@jpmorganchase/perspective-viewer-highcharts";
+window.addEventListener("WebComponentsReady", function() {
+    if (perspective) {
+        perspective.override({wasm, worker});
+    } else {
+        console.warn('Perspective was undefined - wasm load errors may occur');
+    }
+});
 
 
 class App extends Component {
