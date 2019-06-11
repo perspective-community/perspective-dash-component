@@ -127,7 +127,7 @@ class PerspectiveDash(perspective_dash):  # noqa: F405
                                 **kwargs)
 
         super(PerspectiveDash, self).__init__(id=id,
-                                              data=self._perspective.data,
+                                              data=self._perspective._data,
                                               view=self._perspective.view,
                                               schema=self._perspective.schema,
                                               columns=self._perspective.columns,
@@ -139,7 +139,7 @@ class PerspectiveDash(perspective_dash):  # noqa: F405
                                               limit=self._perspective.limit,
                                               computedcolumns=self._perspective.computedcolumns,
                                               filters=self._perspective.filters,
-                                              plugin_config=_self._perspective.plugin_config,
+                                              plugin_config=self._perspective.plugin_config,
                                               settings=self._perspective.settings,
                                               embed=self._perspective.embed,
                                               dark=self._perspective.dark,
