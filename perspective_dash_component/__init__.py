@@ -50,6 +50,7 @@ for _component in __all__:
 
 class PerspectiveDash(perspective_dash):  # noqa: F405
     def __init__(self,
+                 id,
                  data,
                  view='hypergrid',
                  schema=None,
@@ -125,7 +126,7 @@ class PerspectiveDash(perspective_dash):  # noqa: F405
                                 *args,
                                 **kwargs)
 
-        super(PerspectiveDash, self).__init__(id=self._perspective.id,
+        super(PerspectiveDash, self).__init__(id=id,
                                               data=self._perspective.data,
                                               view=self._perspective.view,
                                               schema=self._perspective.schema,
