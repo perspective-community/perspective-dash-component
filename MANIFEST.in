@@ -3,4 +3,5 @@ include perspective_dash_component/*.worker.js
 include perspective_dash_component/*.wasm
 include perspective_dash_component/metadata.json
 include perspective_dash_component/package.json
+include requirements.txt
 include README.md
