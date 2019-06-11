@@ -1,6 +1,6 @@
 {
     "name": "perspective_dash_component",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "A dash component for perspective.",
     "main": "build/index.js",
     "scripts": {
@@ -21,7 +21,6 @@
         "@finos/perspective-viewer-d3fc": "^0.3.0",
         "@finos/perspective-viewer-highcharts": "^0.3.0",
         "@finos/perspective-viewer-hypergrid": "^0.3.0",
-        "fast-async": "^6.3.8",
         "ramda": "^0.25.0"
     },
     "devDependencies": {

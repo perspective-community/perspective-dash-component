@@ -15,8 +15,25 @@
 @import (less) "~@finos/perspective-viewer/cjs/themes/material.less";
 
 div.PSPContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    resize:both;
 }
 
 div.PSPContainer-dark {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    resize:both;
     @import (less) "~@finos/perspective-viewer/cjs/themes/material.dark.less";
+}
+
+perspective-viewer {
+    width: 100%;
+    height: 500px;
 }

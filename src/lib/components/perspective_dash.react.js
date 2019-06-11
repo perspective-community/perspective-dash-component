@@ -27,7 +27,7 @@ export default class perspective_dash extends Component {
                limit,
                setProps} = this.props;
         const element = (
-            <div id={id} className="perspective-container" ref="node">
+            <div id={id} className="PSPContainer" ref="node">
                 <perspective-viewer ref="psp"></perspective-viewer>
             </div>
         );

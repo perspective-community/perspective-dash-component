@@ -1,15 +1,22 @@
 from __future__ import print_function as _
+
 import os as _os
 import sys as _sys
 import json
+
 import dash as _dash  # noqa: F401
 
 # noinspection PyUnresolvedReferences
 from ._imports_ import *  # noqa: F401, F403
 from ._imports_ import __all__
-
-from dash.development.base_component import Component  # noqa: F401
 from perspective import PerspectiveBaseMixin
+
+
+if not hasattr(_dash, 'development'):
+    print('Dash was not successfully imported. '
+          'Make sure you don\'t have a file '
+          'named \n"dash.py" in your current directory.', file=_sys.stderr)
+    _sys.exit(1)
 
 _basepath = _os.path.dirname(__file__)
 _filepath = _os.path.abspath(_os.path.join(_basepath, 'package.json'))
@@ -27,7 +34,7 @@ _this_module = _sys.modules[__name__]
 _js_dist = [
     {
         'relative_package_path': 'perspective_dash_component.min.js',
-        'dev_package_path': 'perspective_dash_component.min.js',
+        'dev_package_path': 'perspective_dash_component.dev.js',
         'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
             package_name, __name__, __version__),
         'namespace': package_name
@@ -40,7 +47,6 @@ _css_dist = []
 for _component in __all__:
     setattr(locals()[_component], '_js_dist', _js_dist)
     setattr(locals()[_component], '_css_dist', _css_dist)
-
 
 class PerspectiveDash(perspective_dash):  # noqa: F405
     def __init__(self,
