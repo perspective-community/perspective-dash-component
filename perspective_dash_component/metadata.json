@@ -38,6 +38,13 @@
         "required": false,
         "description": "Perspective view"
       },
+      "schema": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "Perspective schema"
+      },
       "columns": {
         "type": {
           "name": "array"
@@ -66,6 +73,13 @@
         "required": false,
         "description": "Perspective aggregates"
       },
+      "sort": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective sort"
+      },
       "index": {
         "type": {
           "name": "string"
@@ -79,6 +93,41 @@
         },
         "required": false,
         "description": "Perspective limit"
+      },
+      "computedcolumns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective computedcolumns"
+      },
+      "filters": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective filters"
+      },
+      "plugin_config": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "Perspective plugin_config"
+      },
+      "settings": {
+        "type": {
+          "name": "boolean"
+        },
+        "required": false,
+        "description": "Perspective settings"
+      },
+      "transfer_as_arrow": {
+        "type": {
+          "name": "boolean"
+        },
+        "required": false,
+        "description": "Perspective transfer_as_arrow"
       },
       "setProps": {
         "type": {

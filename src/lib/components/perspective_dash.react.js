@@ -1,20 +1,34 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import '../../style/index.css';
+import '!!style-loader!css-loader!less-loader!../../style/index.less';
 
 /**
- * ExampleComponent is an example component.
- * It takes a property, `label`, and
- * displays it.
  * It renders an input with the property `data`
  * which is editable by the user.
  */
 export default class perspective_dash extends Component {
     render() {
-        const {id, label, data, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = this.props;
+        const {id,
+               data,
+               schema,
+               view,
+               columns,
+               rowpivots,
+               columnpivots,
+               aggregates,
+               sort,
+               computedcolumns,
+               filters,
+               plugin_config,
+               plugin_settings,
+               embed,
+               dark,
+               index,
+               limit,
+               setProps} = this.props;
         const element = (
-            <div id={id} className="perspective-container" ref="node">
-                <perspective-viewer ref="psp" view={view}></perspective-viewer>
+            <div id={id} className="PSPContainer" ref="node">
+                <perspective-viewer ref="psp"></perspective-viewer>
             </div>
         );
 
@@ -22,15 +36,46 @@ export default class perspective_dash extends Component {
     }
 
   renderFromProps(props){
-    const {id, label, data, view, columns, rowpivots, columnpivots, aggregates, index, limit, setProps} = props;
+    const {id,
+           data,
+           schema,
+           view,
+           columns,
+           rowpivots,
+           columnpivots,
+           aggregates,
+           sort,
+           computedcolumns,
+           filters,
+           plugin_config,
+           plugin_settings,
+           embed,
+           dark,
+           index,
+           limit,
+           setProps} = props;
+
     let psp = ReactDOM.findDOMNode(this.refs.psp);
 
     // infinite recursion
     let observer = new MutationObserver(psp.notifyResize.bind(psp));
     observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
 
-    psp.load(data);
-    psp.setAttribute('view', view);
+    console.log(view);
+    console.log(data);
+    console.log(schema);
+
+    if(view){
+      psp.setAttribute('view', view);
+    }
+
+    if (schema && Object.keys(schema).length > 0){
+      psp.load(schema);
+    }
+
+    if(data && data.length > 0){
+      psp.update(data);
+    }
 
     if(columns && columns.length > 0){
         psp.setAttribute('columns', JSON.stringify(columns));
@@ -46,6 +91,18 @@ export default class perspective_dash extends Component {
 
     if(aggregates && aggregates.length > 0){
         psp.setAttribute('aggregates', JSON.stringify(aggregates));
+    }
+
+    if(sort && sort.length > 0){
+        psp.setAttribute('sort', JSON.stringify(sort));
+    }
+
+    if(computedcolumns && computedcolumns.length > 0){
+        psp.setAttribute('computed-columns', JSON.stringify(computedcolumns));
+    }
+
+    if(filters && filters.length > 0){
+        psp.setAttribute('filters', JSON.stringify(filters));
     }
 
     if(index){
