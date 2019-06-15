@@ -20,7 +20,7 @@ export default class perspective_dash extends Component {
                computedcolumns,
                filters,
                plugin_config,
-               plugin_settings,
+               settings,
                embed,
                dark,
                index,
@@ -28,7 +28,6 @@ export default class perspective_dash extends Component {
                setProps} = this.props;
         const element = (
             <div id={id} className="PSPContainer" ref="node">
-                <perspective-viewer ref="psp"></perspective-viewer>
             </div>
         );
 
@@ -48,69 +47,94 @@ export default class perspective_dash extends Component {
            computedcolumns,
            filters,
            plugin_config,
-           plugin_settings,
+           settings,
            embed,
            dark,
            index,
            limit,
            setProps} = props;
 
-    let psp = ReactDOM.findDOMNode(this.refs.psp);
 
-    // infinite recursion
-    let observer = new MutationObserver(psp.notifyResize.bind(psp));
-    observer.observe(ReactDOM.findDOMNode(this.refs.node), {attributes: true});
-
-    console.log(view);
-    console.log(data);
-    console.log(schema);
-
+    if(schema){
+      this.schema = schema;
+    }
     if(view){
-      psp.setAttribute('view', view);
+      this.view = view;
     }
-
-    if (schema && Object.keys(schema).length > 0){
-      psp.load(schema);
+    if(columns){
+      this.columns = columns;
     }
-
-    if(data && data.length > 0){
-      psp.update(data);
+    if(rowpivots){
+      this.rowpivots = rowpivots;
     }
-
-    if(columns && columns.length > 0){
-        psp.setAttribute('columns', JSON.stringify(columns));
+    if(columnpivots){
+      this.columnpivots = columnpivots;
     }
-
-    if(rowpivots && rowpivots.length > 0){
-        psp.setAttribute('row-pivots', JSON.stringify(rowpivots));
+    if(aggregates){
+      this.aggregates = aggregates;
     }
-
-    if(columnpivots && columnpivots.length > 0){
-        psp.setAttribute('column-pivots', JSON.stringify(columnpivots));
+    if(sort){
+      this.sort = sort;
     }
-
-    if(aggregates && aggregates.length > 0){
-        psp.setAttribute('aggregates', JSON.stringify(aggregates));
+    if(computedcolumns){
+      this.computedcolumns = computedcolumns;
     }
-
-    if(sort && sort.length > 0){
-        psp.setAttribute('sort', JSON.stringify(sort));
+    if(filters){
+      this.filters = filters;
     }
-
-    if(computedcolumns && computedcolumns.length > 0){
-        psp.setAttribute('computed-columns', JSON.stringify(computedcolumns));
-    }
-
-    if(filters && filters.length > 0){
-        psp.setAttribute('filters', JSON.stringify(filters));
-    }
-
     if(index){
-        psp.setAttribute('index', index);
+      this.index = index;
+    }
+    if(limit){
+      this.limit = limit;
     }
 
-    if(limit){
-        psp.setAttribute('limit', limit);
+    if(data){
+      let psp_container = ReactDOM.findDOMNode(this.refs.node);
+      while(psp_container.lastChild){
+        psp_container.removeChild(psp_container.lastChild);
+      }
+      var psp = document.createElement("perspective-viewer");
+      psp_container.appendChild(psp);
+
+      var options = {};
+      if(this.index){
+        options["index"] = this.index;
+      }
+      if(this.limit && this.limit > 0){
+        options["limit"] = this.limit;
+      }
+      if(this.schema){
+        psp.load(this.schema, options);
+        psp.update(data);
+      } else {
+        psp.load(data, options);
+      }
+
+      if(this.view){
+        psp.restore({view:this.view});
+      }
+      if(this.columns){
+        psp.restore({columns:this.columns});
+      }
+      if(this.rowpivots){
+        psp.restore({"row-pivots":this.rowpivots});
+      }
+      if(this.columnpivots){
+        psp.restore({"column-pivots":this.columnpivots});
+      }
+      if(this.aggregates){
+        psp.restore({aggregates:this.aggregates});
+      }
+      if(this.sort){
+        psp.restore({sort:this.sort});
+      }
+      if(computedcolumns){
+        psp.restore({"computed-columns":this.computedcolumns});
+      }
+      if(this.filters){
+        psp.restore({filters:this.filters});
+      }
     }
   }
 
@@ -160,7 +184,27 @@ perspective_dash.propTypes = {
     /**
      * Perspective aggregates
      */
-    aggregates: PropTypes.array,
+    aggregates: PropTypes.object,
+
+    /**
+     * Perspective sort
+     */
+    sort: PropTypes.array,
+
+    /**
+     * Perspective computedcolumns
+     */
+    computedcolumns: PropTypes.array,
+
+    /**
+     * Perspective filters
+     */
+    filters: PropTypes.array,
+
+    /**
+     * Perspective sort
+     */
+    sort: PropTypes.array,
 
     /**
      * Perspective index

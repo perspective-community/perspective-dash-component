@@ -4,25 +4,7 @@ from dash.development.base_component import Component, _explicitize_args
 
 
 class perspective_dash(Component):
-    """A perspective_dash component.
-ExampleComponent is an example component.
-It takes a property, `label`, and
-displays it.
-It renders an input with the property `data`
-which is editable by the user.
-
-Keyword arguments:
-- id (string; optional): The ID used to identify this component in Dash callbacks
-- data (list; required): The data displayed in the input
-- view (string; optional): Perspective view
-- columns (list; optional): Perspective columns
-- rowpivots (list; optional): Perspective rowpivots
-- columnpivots (list; optional): Perspective columnpivots
-- aggregates (list; optional): Perspective aggregates
-- index (string; optional): Perspective index
-- limit (number; optional): Perspective limit
-
-Available events: """
+    """A perspective_dash component."""
     @_explicitize_args
     def __init__(self,
                  id=Component.UNDEFINED,
@@ -44,12 +26,14 @@ Available events: """
                  dark=Component.UNDEFINED,
                  transfer_as_arrow=Component.UNDEFINED,
                  **kwargs):
-        self._prop_names = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index', 'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
+        self._prop_names = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index',
+                            'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
         self._type = 'perspective_dash'
         self._namespace = 'perspective_dash_component'
         self._valid_wildcard_attributes = []
         self.available_events = []
-        self.available_properties = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index', 'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
+        self.available_properties = ['id', 'data', 'view', 'schema', 'columns', 'rowpivots', 'columnpivots', 'aggregates', 'sort', 'index',
+                                     'limit', 'computedcolumns', 'filters', 'plugin_config', 'settings', 'embed', 'dark', 'transfer_as_arrow']
         self.available_wildcard_properties = []
 
         _explicit_args = kwargs.pop('_explicit_args')
